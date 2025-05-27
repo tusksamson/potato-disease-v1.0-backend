@@ -17,7 +17,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-MODEL = tf.keras.models.load_model("../saved_models/potatoes.h5")
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL = tf.keras.models.load_model(os.path.join(BASE_DIR, "../saved_models/potatoes.h5"))
 CLASS_NAMES = ["Early Blight", "Late Blight", "Healthy"]
 
 @app.get("/ping")
